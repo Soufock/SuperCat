@@ -167,6 +167,7 @@ declare function GM_openInTab(url: string, loadInBackground: boolean): GMTypes.T
 declare function GM_openInTab(url: string): GMTypes.Tab | undefined;
 
 declare function GM_xmlhttpRequest(details: GMTypes.XHRDetails): GMTypes.AbortHandle<void>;
+declare function GM_webSocket(details: GMTypes.WebSocketDetails): GMTypes.GMWebSocket;
 
 declare function GM_download(details: GMTypes.DownloadDetails<string | Blob | File>): GMTypes.AbortHandle<boolean>;
 declare function GM_download(url: string, filename: string): GMTypes.AbortHandle<boolean>;
@@ -287,6 +288,7 @@ declare const GM: {
 
   /** XMLHttpRequest */
   xmlHttpRequest(details: GMTypes.XHRDetails): Promise<GMTypes.XHRResponse>;
+  webSocket(details: GMTypes.WebSocketDetails): GMTypes.GMWebSocket;
 
   /** 下载 */
   download(details: GMTypes.DownloadDetails<string | Blob | File>): Promise<boolean>;
@@ -648,6 +650,73 @@ declare namespace GMTypes {
     ontimeout?: Listener<XHRResponse>;
     onabort?: Listener<XHRResponse>;
     onerror?: (err: string | (XHRResponse & { error: string })) => void;
+  }
+
+  interface WebSocketEvent {
+    type: "open" | "message" | "error" | "close";
+    target?: GMWebSocket;
+    currentTarget?: GMWebSocket;
+    context?: ContextType;
+    url?: string;
+    protocol?: string;
+    extensions?: string;
+  }
+
+  interface WebSocketMessageEvent extends WebSocketEvent {
+    type: "message";
+    data: string | Blob | ArrayBuffer;
+    origin?: string;
+  }
+
+  interface WebSocketCloseEvent extends WebSocketEvent {
+    type: "close";
+    code: number;
+    reason: string;
+    wasClean: boolean;
+  }
+
+  interface WebSocketErrorEvent extends WebSocketEvent {
+    type: "error";
+    error?: string;
+    message?: string;
+  }
+
+  interface WebSocketDetails {
+    url: string | URL;
+    protocols?: string | string[];
+    binaryType?: BinaryType;
+    context?: ContextType;
+    onopen?: Listener<WebSocketEvent>;
+    onmessage?: Listener<WebSocketMessageEvent>;
+    onclose?: Listener<WebSocketCloseEvent>;
+    onerror?: Listener<WebSocketErrorEvent>;
+  }
+
+  interface GMWebSocket {
+    readonly CONNECTING: 0;
+    readonly OPEN: 1;
+    readonly CLOSING: 2;
+    readonly CLOSED: 3;
+    readonly url: string;
+    readonly protocol: string;
+    readonly extensions: string;
+    readonly bufferedAmount: number;
+    readyState: number;
+    binaryType: BinaryType;
+    onopen: ((event: WebSocketEvent) => unknown) | null;
+    onmessage: ((event: WebSocketMessageEvent) => unknown) | null;
+    onclose: ((event: WebSocketCloseEvent) => unknown) | null;
+    onerror: ((event: WebSocketErrorEvent) => unknown) | null;
+    addEventListener(
+      type: WebSocketEvent["type"],
+      listener: (event: WebSocketEvent | WebSocketMessageEvent | WebSocketCloseEvent | WebSocketErrorEvent) => unknown
+    ): void;
+    removeEventListener(
+      type: WebSocketEvent["type"],
+      listener: (event: WebSocketEvent | WebSocketMessageEvent | WebSocketCloseEvent | WebSocketErrorEvent) => unknown
+    ): void;
+    send(data: string | Blob | ArrayBuffer | ArrayBufferView): void;
+    close(code?: number, reason?: string): void;
   }
 
   interface AbortHandle<RETURN_TYPE> {

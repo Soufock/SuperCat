@@ -24,6 +24,7 @@ import { decodeRValue, encodeRValue, type REncoded } from "@App/pkg/utils/messag
 import { type TGMKeyValue } from "@App/app/repo/value";
 import type { ContextType } from "./gm_xhr";
 import { convObjectToURL, GM_xmlhttpRequest, toBlobURL, urlToDocumentInContentPage } from "./gm_xhr";
+import { GM_webSocket } from "./gm_websocket";
 import { ScriptEnvTag } from "@Packages/message/consts";
 
 // 内部函数呼叫定义
@@ -936,6 +937,16 @@ export default class GMApi extends GM_Base {
     const ret = retPromise as Promise<GMTypes.XHRResponse> & GMRequestHandle;
     ret.abort = abort;
     return ret;
+  }
+
+  @GMContext.API()
+  public GM_webSocket(details: GMTypes.WebSocketDetails): GMTypes.GMWebSocket {
+    return GM_webSocket(this, details);
+  }
+
+  @GMContext.API()
+  public "GM.webSocket"(details: GMTypes.WebSocketDetails): GMTypes.GMWebSocket {
+    return this.GM_webSocket(details);
   }
 
   /**

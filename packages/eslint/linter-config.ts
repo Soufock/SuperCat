@@ -11,6 +11,7 @@ const config = {
     },
   },
   globals: {
+    GM_webSocket: "readonly",
     CATRetryError: "readonly",
     CAT_fileStorage: "readonly",
     CAT_userConfig: "readonly",

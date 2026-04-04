@@ -6,8 +6,14 @@ export class ExtensionMessage implements Message {
   connect(data: TMessage): Promise<MessageConnect> {
     return new Promise((resolve) => {
       const con = chrome.runtime.connect();
-      con.postMessage(data);
       resolve(new ExtensionMessageConnect(con));
+      setTimeout(() => {
+        try {
+          con.postMessage(data);
+        } catch (e) {
+          console.error("chrome.runtime.connect initial postMessage error:", e);
+        }
+      }, 0);
     });
   }
 
@@ -206,8 +212,14 @@ export class ExtensionContentMessageSend implements MessageSend {
   connect(data: TMessage): Promise<MessageConnect> {
     return new Promise((resolve) => {
       const con = chrome.tabs.connect(this.tabId, this.options);
-      con.postMessage(data);
       resolve(new ExtensionMessageConnect(con));
+      setTimeout(() => {
+        try {
+          con.postMessage(data);
+        } catch (e) {
+          console.error("chrome.tabs.connect initial postMessage error:", e);
+        }
+      }, 0);
     });
   }
 }

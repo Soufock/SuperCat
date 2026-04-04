@@ -67,6 +67,13 @@ declare namespace GMSend {
     byPassConnect?: boolean;
   }
 
+  interface WebSocketDetails {
+    id: string;
+    url: string;
+    protocols?: string | string[];
+    binaryType?: BinaryType;
+  }
+
   interface XHRFormDataFile {
     type: "file";
     key: string;

@@ -43,6 +43,7 @@ describe.concurrent("@grant GM", () => {
       "GM_openInTab",
       "GM_log",
       "GM_notification",
+      "GM_webSocket",
     ];
     const exec = new ExecScript(script, {
       envPrefix: "scripting",
@@ -68,6 +69,8 @@ describe.concurrent("@grant GM", () => {
       ["GM.notification"]: this.GM.notification,
       ["GM_xmlhttpRequest"]: this.GM_xmlhttpRequest || function nil(){},
       ["GM.xmlhttpRequest"]: this.GM.xmlhttpRequest || function nil(){},
+      ["GM_webSocket"]: this.GM_webSocket || function nil(){},
+      ["GM.webSocket"]: this.GM.webSocket || function nil(){},
     }`;
     exec.scriptFunc = compileScript(compileScriptCode(script));
     const ret = await exec.exec();
@@ -92,6 +95,8 @@ describe.concurrent("@grant GM", () => {
     // 没有grant应返回 nil
     expect(ret["GM_xmlhttpRequest"]?.name).toEqual("nil");
     expect(ret["GM.xmlhttpRequest"]?.name).toEqual("nil");
+    expect(ret["GM_webSocket"]?.name).toEqual("bound GM_webSocket");
+    expect(ret["GM.webSocket"]?.name).toEqual("bound GM.webSocket");
   });
 
   it.concurrent("GM.*", async () => {
@@ -106,6 +111,7 @@ describe.concurrent("@grant GM", () => {
       "GM.openInTab",
       "GM.log",
       "GM.notification",
+      "GM.webSocket",
     ];
     const exec = new ExecScript(script, {
       envPrefix: "scripting",
@@ -130,6 +136,8 @@ describe.concurrent("@grant GM", () => {
       ["GM.notification"]: this.GM.notification,
       ["GM_xmlhttpRequest"]: this.GM_xmlhttpRequest || function nil(){},
       ["GM.xmlhttpRequest"]: this.GM.xmlhttpRequest || function nil(){},
+      ["GM_webSocket"]: this.GM_webSocket || function nil(){},
+      ["GM.webSocket"]: this.GM.webSocket || function nil(){},
     }`;
     exec.scriptFunc = compileScript(compileScriptCode(script));
     const ret = await exec.exec();
@@ -154,6 +162,8 @@ describe.concurrent("@grant GM", () => {
     // 没有grant应返回 nil
     expect(ret["GM_xmlhttpRequest"]?.name).toEqual("nil");
     expect(ret["GM.xmlhttpRequest"]?.name).toEqual("nil");
+    expect(ret["GM_webSocket"]?.name).toEqual("bound GM_webSocket");
+    expect(ret["GM.webSocket"]?.name).toEqual("bound GM.webSocket");
   });
 });
 

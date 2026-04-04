@@ -118,7 +118,7 @@ export const dataEncode = async (kData: any) => {
   if (kData?.then) {
     kData = await kData;
   }
-  if (kData instanceof Document) {
+  if (typeof Document !== "undefined" && kData instanceof Document) {
     throw new Error("GM xhr data does not support Document");
   }
   // 处理数据

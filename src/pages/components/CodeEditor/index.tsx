@@ -126,6 +126,11 @@ const CodeEditor: React.ForwardRefRenderFunction<{ editor: editor.IStandaloneCod
       dragAndDrop: false,
       emptySelectionClipboard: false,
       copyWithSyntaxHighlighting: false,
+      // Monaco 0.52.x can surface an unhandled `Canceled: Canceled` rejection
+      // from WordHighlighter during React dev-mode teardown. Disable the
+      // feature instead of swallowing global unhandled rejections.
+      selectionHighlight: false,
+      occurrencesHighlight: "off",
       bracketPairColorization: {
         enabled: true,
       },

@@ -53,6 +53,7 @@ import { headerModifierMap, headersReceivedMap } from "./gm_xhr";
 import { BgGMXhr } from "@App/pkg/utils/xhr/bg_gm_xhr";
 import { mightPrepareSetClipboard, setClipboard } from "../clipboard";
 import { nativePageWindowOpen } from "../../offscreen/gm_api";
+import { handleGMWebSocket } from "./gm_websocket";
 
 let generatedUniqueMarkerIDs = "";
 let generatedUniqueMarkerIDWhen = "";
@@ -910,6 +911,74 @@ export default class GMApi {
       }
       throw new Error(errorMsg);
     }
+  }
+
+  @PermissionVerify.API({
+    confirm: async (request: GMApiRequest<[GMSend.WebSocketDetails?]>, sender: IGetSender, GMApiInstance: GMApi) => {
+      const msgConn = sender.getConnect();
+      if (!msgConn) {
+        throw new Error("GM_webSocket ERROR: msgConn is undefined");
+      }
+      const throwErrorFn = (error: string) => {
+        msgConn.sendMessage({
+          action: "event",
+          data: {
+            type: "error",
+            error,
+            readyState: 3,
+          },
+        });
+        return new Error(error);
+      };
+      const details = request.params[0];
+      if (!details) {
+        throw throwErrorFn("param is failed");
+      }
+      let url;
+      try {
+        url = new URL(details.url);
+      } catch {
+        throw throwErrorFn(`Refused to connect to "${details.url}": The url is invalid`);
+      }
+      if (!["ws:", "wss:"].includes(url.protocol)) {
+        throw throwErrorFn(`Refused to connect to "${details.url}": Unsupported protocol`);
+      }
+      if (GMApiInstance.gmExternalDependencies.isBlacklistNetwork(url)) {
+        throw throwErrorFn(`Refused to connect to "${details.url}": URL is blacklisted`);
+      }
+      const connectMatched = getConnectMatched(request.script.metadata.connect, url, sender);
+      if (connectMatched === ConnectMatch.ALL || connectMatched > 0) {
+        return true;
+      }
+      if (request.script.metadata.connect?.find((e) => !!e)) {
+        const ret = await GMApiInstance.permissionVerify.queryPermission(request, {
+          permission: "cors",
+          permissionValue: url.hostname,
+          wildcard: true,
+        });
+        if (ret && ret.allow) {
+          return true;
+        }
+        throw throwErrorFn(`Refused to connect to "${details.url}": This domain is not a part of the @connect list`);
+      }
+      const metadata: { [key: string]: string } = {};
+      metadata[i18next.t("script_name")] = i18nName(request.script);
+      metadata[i18next.t("request_domain")] = url.hostname;
+      metadata[i18next.t("request_url")] = details.url;
+      return {
+        permission: "cors",
+        permissionValue: url.hostname,
+        title: i18next.t("script_accessing_cross_origin_resource"),
+        metadata,
+        describe: i18next.t("confirm_operation_description"),
+        wildcard: true,
+        permissionContent: i18next.t("domain"),
+      } as ConfirmParam;
+    },
+    alias: ["GM.webSocket"],
+  })
+  async GM_webSocket(request: GMApiRequest<[GMSend.WebSocketDetails]>, sender: IGetSender) {
+    return handleGMWebSocket(request, sender);
   }
 
   @PermissionVerify.API({ alias: ["CAT_registerMenuInput"] })

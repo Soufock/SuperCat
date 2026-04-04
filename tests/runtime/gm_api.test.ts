@@ -15,6 +15,83 @@ const customXhrResponseMap = new Map<
 >();
 
 const realXMLHttpRequest = global.XMLHttpRequest;
+const realWebSocket = global.WebSocket;
+
+class MockWebSocket {
+  static CONNECTING = 0;
+  static OPEN = 1;
+  static CLOSING = 2;
+  static CLOSED = 3;
+
+  public readonly url: string;
+  public readonly extensions = "";
+  public protocol = "";
+  public readyState = MockWebSocket.CONNECTING;
+  public binaryType: BinaryType = "blob";
+  public bufferedAmount = 0;
+
+  public onopen: ((event: Event) => void) | null = null;
+  public onmessage: ((event: MessageEvent) => void) | null = null;
+  public onerror: ((event: Event) => void) | null = null;
+  public onclose: ((event: CloseEvent) => void) | null = null;
+
+  private listeners = new Map<string, Set<(event: any) => void>>();
+
+  constructor(
+    url: string | URL,
+    protocols?: string | string[]
+  ) {
+    this.url = `${url}`;
+    this.protocol = Array.isArray(protocols) ? (protocols[0] ?? "") : (protocols ?? "");
+    queueMicrotask(() => {
+      this.readyState = MockWebSocket.OPEN;
+      this.emit("open", new Event("open"));
+    });
+  }
+
+  addEventListener(type: string, listener: (event: any) => void) {
+    let listeners = this.listeners.get(type);
+    if (!listeners) {
+      listeners = new Set();
+      this.listeners.set(type, listeners);
+    }
+    listeners.add(listener);
+  }
+
+  removeEventListener(type: string, listener: (event: any) => void) {
+    this.listeners.get(type)?.delete(listener);
+  }
+
+  send(data: string | Blob | ArrayBuffer | ArrayBufferView) {
+    queueMicrotask(async () => {
+      let messageData: any = data;
+      if (ArrayBuffer.isView(data)) {
+        messageData = data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);
+      } else if (data instanceof Blob && this.binaryType === "arraybuffer") {
+        messageData = await data.arrayBuffer();
+      }
+      if (data instanceof ArrayBuffer && this.binaryType === "blob") {
+        messageData = new Blob([data]);
+      }
+      this.emit("message", new MessageEvent("message", { data: messageData, origin: "https://example.com" }));
+    });
+  }
+
+  close(code = 1000, reason = "") {
+    if (this.readyState === MockWebSocket.CLOSED) return;
+    this.readyState = MockWebSocket.CLOSING;
+    queueMicrotask(() => {
+      this.readyState = MockWebSocket.CLOSED;
+      this.emit("close", new CloseEvent("close", { code, reason, wasClean: true }));
+    });
+  }
+
+  private emit(type: string, event: any) {
+    const handler = this[`on${type}` as "onopen" | "onmessage" | "onerror" | "onclose"];
+    handler?.(event);
+    this.listeners.get(type)?.forEach((listener) => listener(event));
+  }
+}
 
 const script: Script = {
   uuid: randomUUID(),
@@ -23,6 +100,7 @@ const script: Script = {
     grant: [
       // gm xhr
       "GM_xmlhttpRequest",
+      "GM_webSocket",
     ],
     connect: ["example.com"],
   },
@@ -106,10 +184,12 @@ beforeAll(async () => {
     },
   });
   vi.stubGlobal("XMLHttpRequest", mockXhr);
+  vi.stubGlobal("WebSocket", MockWebSocket as unknown as typeof WebSocket);
 });
 
 afterAll(() => {
   vi.stubGlobal("XMLHttpRequest", realXMLHttpRequest);
+  vi.stubGlobal("WebSocket", realWebSocket);
 });
 
 describe.concurrent("测试GMApi环境 - XHR", async () => {
@@ -121,6 +201,7 @@ describe.concurrent("测试GMApi环境 - XHR", async () => {
       grant: [
         // gm xhr
         "GM_xmlhttpRequest",
+        "GM_webSocket",
       ],
       connect: ["example.com"],
     },
@@ -419,6 +500,65 @@ describe.concurrent("GM xmlHttpRequest", () => {
         },
       });
     });
+  });
+});
+
+describe.concurrent("GM webSocket", () => {
+  const msg = initTestGMApi();
+  const gmApi = new GMApi("serviceWorker", msg, undefined as any, <ScriptRunResource>{
+    uuid: script.uuid,
+  });
+
+  it.concurrent("open send and close", async () => {
+    const openFn = vitest.fn();
+    const messageFn = vitest.fn();
+    const closeFn = vitest.fn();
+
+    await new Promise<void>((resolve) => {
+      const ws = gmApi.GM_webSocket({
+        url: "wss://example.com/socket",
+        protocols: ["chat"],
+        onopen: (event) => {
+          openFn(event.protocol);
+          ws.send("hello");
+        },
+        onmessage: (event) => {
+          messageFn(event.data);
+          ws.close(1000, "done");
+        },
+        onclose: (event) => {
+          closeFn(event.code, event.reason, ws.readyState);
+          resolve();
+        },
+      });
+    });
+
+    expect(openFn).toBeCalledWith("chat");
+    expect(messageFn).toBeCalledWith("hello");
+    expect(closeFn).toBeCalledWith(1000, "done", 3);
+  });
+
+  it.concurrent("supports arraybuffer binary messages", async () => {
+    const messageFn = vitest.fn();
+
+    await new Promise<void>((resolve) => {
+      const ws = gmApi.GM_webSocket({
+        url: "wss://example.com/binary",
+        binaryType: "arraybuffer",
+        onopen: () => {
+          ws.send(new Uint8Array([1, 2, 3]));
+        },
+        onmessage: (event) => {
+          messageFn(Array.from(new Uint8Array(event.data as ArrayBuffer)));
+          ws.close();
+        },
+        onclose: () => {
+          resolve();
+        },
+      });
+    });
+
+    expect(messageFn).toBeCalledWith([1, 2, 3]);
   });
 });
 
