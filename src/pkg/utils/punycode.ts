@@ -8,7 +8,7 @@ const initialBias = 72;
 const initialN = 128;
 const delimiter = "-";
 const adaptD = base - tMin; // 35
-const adaptL = ((adaptD + 1) * tMax) >>> 1; // 468
+const adaptL = (adaptD * tMax) >>> 1; // 455
 
 const ERR = {
   OVERFLOW: "Overflow: input needs wider integers",
@@ -20,6 +20,13 @@ const error = (t: string) => {
 };
 
 const floor = Math.floor;
+
+const basicToDigit = (cp: number) => {
+  if (cp >= 0x30 && cp < 0x3a) return cp - 22;
+  if (cp >= 0x41 && cp < 0x5b) return cp - 0x41;
+  if (cp >= 0x61 && cp < 0x7b) return cp - 0x61;
+  return base;
+};
 
 const adapt = (delta: number, numPoints: number, firstTime: boolean) => {
   delta = firstTime ? floor(delta / damp) : delta >>> 1;
@@ -37,7 +44,7 @@ const adapt = (delta: number, numPoints: number, firstTime: boolean) => {
 export const decodePunycode = (input: string) => {
   input = input.toLowerCase();
   input = input.startsWith("xn--") ? input.slice(4) : input;
-  if (!input || input.length > 251) error(ERR.INVALID);
+  if (!input) error(ERR.INVALID);
   const output: number[] = [];
   const len = input.length;
   let i = 0;
@@ -63,32 +70,24 @@ export const decodePunycode = (input: string) => {
 
     for (let k = base; ; k += base) {
       if (j >= len) error(ERR.INVALID);
-      const cp = input.codePointAt(j++)!;
-
-      let digit = -1;
-      // 0-9 / A-Z / a-z
-      if (cp >= 0x30 && cp < 0x3a) digit = 26 + (cp - 0x30);
-      else if (cp >= 0x41 && cp < 0x5b) digit = cp - 0x41;
-      else if (cp >= 0x61 && cp < 0x7b) digit = cp - 0x61;
-      else error(ERR.INVALID);
+      const digit = basicToDigit(input.charCodeAt(j++));
+      if (digit >= base || digit > floor((maxInt - i) / w)) error(ERR.OVERFLOW);
 
       i += digit * w;
-      if (i >= maxInt) error(ERR.OVERFLOW);
 
       const t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
 
       if (digit < t) break;
 
       const baseMinusT = base - t;
+      if (w > floor(maxInt / baseMinusT)) error(ERR.OVERFLOW);
       w *= baseMinusT;
-      if (w >= maxInt) error(ERR.OVERFLOW);
     }
 
     const out = output.length + 1;
     bias = adapt(i - oldi, out, oldi === 0);
-    if (bias > 198) error(ERR.OVERFLOW); // 198 is the theoretical max for 251 bytes decoding to ~0x10ffff
+    if (floor(i / out) > maxInt - n) error(ERR.OVERFLOW);
     n += floor(i / out);
-    if (n > 0x10ffff) error(ERR.OVERFLOW);
     i %= out;
 
     output.splice(i++, 0, n);
