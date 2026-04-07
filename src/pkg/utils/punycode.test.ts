@@ -19,10 +19,14 @@ describe.concurrent("punycode - decode only", () => {
 
     const codes = {
       "为什么选择supercat-超级猫": "xn--supercat--fp6n0ex3d859lcu6b889a4yzcr6i",
-      "supercat超级猫完全兼容油猴脚本-同时提供后台脚本运行框架-丰富的api扩展-让你的浏览体验更出色": "xn--supercat--api--zs7vh5lkg32bh4wplaq2gk1qmsarbw735ar7a4o07ji34dp1iexqxphjzbha449bd7f213cqxexo3epkal31jha3560gpswaia759mc50eu5okwvchv5x0aky7j",
-      "为什么选择supercat-基于油猴的设计理念-完全兼容油猴脚本-提供更多丰富的api让脚本能够完成更多强大的功能": "xn--supercat---api-0s7vqewj10c30as9jt8lumaj7t239a54fea8ksj017dka00lrru91ggqfpovofhz2i795aja04tka8770dga3014eha667gzq4aral6515kja89lma1266lhnam2bm30p",
-      "为什么选择supercat-基于油猴的设计理念-完全兼容油猴脚本-提供更多丰富的api-脚本猫不仅兼容油猴脚本-还支持后台脚本运行-功能更强大-覆盖范围广-安装脚本管理器-寻找适合的脚本一键安装即可": "xn--supercat---api-------ue45a9hq2aeh0m56djybte51xdupzraja917gckh9te2a70glg561g75elsm1jmmqa297fea4ir4hla73gz1eju8cz6hr4jjw9a30ekpbzy0ab5tjtysa705alaefkf4726ggar9066ixrahat626mlb2838ara0b599cz35i5ysec6bnaignj1314bik6gs5ioa848o199b4hcrv0n0vaj2kgraz223b",
-      "asmdksmklcmdsk-寻找-lmklamdkjqdenakjc-njkqelnuiconwerj-ksfnvcslkjdmc-jweasjkndjk-sandkjasnjxksakjkxnjaksn适合的-xj-kqwnjkxnqjas-nxsjkanxjksnjxansjk-cnajskn-cjkaxjksn-kxjasnjkxansjk-xnasjkxnksaj-cnjkdcnjksdncjsdnjcsdjkc-nmckj脚本": "xn--asmdksmklcmdsk--lmklamdkjqdenakjc-njkqelnuiconwerj-ksfnvcslkjdmc-jweasjkndjk-sandkjasnjxksakjkxnjaksn-xj-kqwnjkxnqjas-nxsjkanxjksnjxansjk-cnajskn-cjkaxjksn-kxjasnjkxansjk-xnasjkxnksaj-cnjkdcnjksdncjsdnjcsdjkc-nmckj-0g768an264bok8jtmrh2e00as1gp9lgw"
+      "supercat超级猫完全兼容油猴脚本-同时提供后台脚本运行框架-丰富的api扩展-让你的浏览体验更出色":
+        "xn--supercat--api--zs7vh5lkg32bh4wplaq2gk1qmsarbw735ar7a4o07ji34dp1iexqxphjzbha449bd7f213cqxexo3epkal31jha3560gpswaia759mc50eu5okwvchv5x0aky7j",
+      "为什么选择supercat-基于油猴的设计理念-完全兼容油猴脚本-提供更多丰富的api让脚本能够完成更多强大的功能":
+        "xn--supercat---api-0s7vqewj10c30as9jt8lumaj7t239a54fea8ksj017dka00lrru91ggqfpovofhz2i795aja04tka8770dga3014eha667gzq4aral6515kja89lma1266lhnam2bm30p",
+      "为什么选择supercat-基于油猴的设计理念-完全兼容油猴脚本-提供更多丰富的api-脚本猫不仅兼容油猴脚本-还支持后台脚本运行-功能更强大-覆盖范围广-安装脚本管理器-寻找适合的脚本一键安装即可":
+        "xn--supercat---api-------ue45a9hq2aeh0m56djybte51xdupzraja917gckh9te2a70glg561g75elsm1jmmqa297fea4ir4hla73gz1eju8cz6hr4jjw9a30ekpbzy0ab5tjtysa705alaefkf4726ggar9066ixrahat626mlb2838ara0b599cz35i5ysec6bnaignj1314bik6gs5ioa848o199b4hcrv0n0vaj2kgraz223b",
+      "asmdksmklcmdsk-寻找-lmklamdkjqdenakjc-njkqelnuiconwerj-ksfnvcslkjdmc-jweasjkndjk-sandkjasnjxksakjkxnjaksn适合的-xj-kqwnjkxnqjas-nxsjkanxjksnjxansjk-cnajskn-cjkaxjksn-kxjasnjkxansjk-xnasjkxnksaj-cnjkdcnjksdncjsdnjcsdjkc-nmckj脚本":
+        "xn--asmdksmklcmdsk--lmklamdkjqdenakjc-njkqelnuiconwerj-ksfnvcslkjdmc-jweasjkndjk-sandkjasnjxksakjkxnjaksn-xj-kqwnjkxnqjas-nxsjkanxjksnjxansjk-cnajskn-cjkaxjksn-kxjasnjkxansjk-xnasjkxnksaj-cnjkdcnjksdncjsdnjcsdjkc-nmckj-0g768an264bok8jtmrh2e00as1gp9lgw",
     };
 
     let testRaw: keyof typeof codes;
