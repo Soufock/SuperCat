@@ -7,8 +7,8 @@ const compatMap = {
   CAT_registerMenuInput: [{ type: "scriptcat", versionConstraint: ">=0.17.0-beta.2" }],
   CAT_unregisterMenuInput: [{ type: "scriptcat", versionConstraint: ">=0.17.0-beta.2" }],
   CAT_scriptLoaded: [{ type: "scriptcat", versionConstraint: ">=1.1.0-beta" }],
-  GM_webSocket: [{ type: "scriptcat", versionConstraint: ">=1.3.4" }],
-  "GM.webSocket": [{ type: "scriptcat", versionConstraint: ">=1.3.4" }],
+  GM_webSocket: [{ type: "scriptcat", versionConstraint: ">=1.3.5" }],
+  "GM.webSocket": [{ type: "scriptcat", versionConstraint: ">=1.3.5" }],
   ...compat_grant.compatMap,
 };
 
