@@ -174,7 +174,13 @@ class GMWebSocketProxy implements GMTypes.GMWebSocket {
 
   addEventListener(
     type: GMTypes.WebSocketEvent["type"],
-    listener: (event: GMTypes.WebSocketEvent | GMTypes.WebSocketMessageEvent | GMTypes.WebSocketCloseEvent | GMTypes.WebSocketErrorEvent) => unknown
+    listener: (
+      event:
+        | GMTypes.WebSocketEvent
+        | GMTypes.WebSocketMessageEvent
+        | GMTypes.WebSocketCloseEvent
+        | GMTypes.WebSocketErrorEvent
+    ) => unknown
   ) {
     let listeners = this.listenerMap.get(type);
     if (!listeners) {
@@ -186,7 +192,13 @@ class GMWebSocketProxy implements GMTypes.GMWebSocket {
 
   removeEventListener(
     type: GMTypes.WebSocketEvent["type"],
-    listener: (event: GMTypes.WebSocketEvent | GMTypes.WebSocketMessageEvent | GMTypes.WebSocketCloseEvent | GMTypes.WebSocketErrorEvent) => unknown
+    listener: (
+      event:
+        | GMTypes.WebSocketEvent
+        | GMTypes.WebSocketMessageEvent
+        | GMTypes.WebSocketCloseEvent
+        | GMTypes.WebSocketErrorEvent
+    ) => unknown
   ) {
     this.listenerMap.get(type)?.delete(listener as (event: any) => unknown);
   }

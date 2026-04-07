@@ -37,10 +37,7 @@ class MockWebSocket {
 
   private listeners = new Map<string, Set<(event: any) => void>>();
 
-  constructor(
-    url: string | URL,
-    protocols?: string | string[]
-  ) {
+  constructor(url: string | URL, protocols?: string | string[]) {
     this.url = `${url}`;
     this.protocol = Array.isArray(protocols) ? (protocols[0] ?? "") : (protocols ?? "");
     queueMicrotask(() => {
