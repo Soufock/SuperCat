@@ -2,11 +2,11 @@ import { test, expect } from "./fixtures";
 import { openPopupPage } from "./utils";
 
 test.describe("Popup Page", () => {
-  test("should load and display ScriptCat title", async ({ context, extensionId }) => {
+  test("should load and display SuperCat title", async ({ context, extensionId }) => {
     const page = await openPopupPage(context, extensionId);
 
-    // The popup should show "ScriptCat" title in the card header
-    await expect(page.getByText("ScriptCat", { exact: true })).toBeVisible({ timeout: 10_000 });
+    // The popup should show "SuperCat" title in the card header
+    await expect(page.getByText("SuperCat", { exact: true })).toBeVisible({ timeout: 10_000 });
   });
 
   test("should show global script enable/disable switch", async ({ context, extensionId }) => {
@@ -34,7 +34,7 @@ test.describe("Popup Page", () => {
     const page = await openPopupPage(context, extensionId);
 
     // Wait for the popup to fully load
-    await expect(page.getByText("ScriptCat", { exact: true })).toBeVisible({ timeout: 10_000 });
+    await expect(page.getByText("SuperCat", { exact: true })).toBeVisible({ timeout: 10_000 });
 
     // Find the settings button - it's an icon-only button in the header
     // The order is: Switch, Settings, Notification, MoreMenu
@@ -54,7 +54,7 @@ test.describe("Popup Page", () => {
     const page = await openPopupPage(context, extensionId);
 
     // Wait for popup to load
-    await expect(page.getByText("ScriptCat", { exact: true })).toBeVisible({ timeout: 10_000 });
+    await expect(page.getByText("SuperCat", { exact: true })).toBeVisible({ timeout: 10_000 });
 
     // The more menu button is the last icon-only button
     const iconButtons = page.locator(".arco-btn-icon-only");

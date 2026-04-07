@@ -217,9 +217,9 @@ descsCache.clear(); // 内存释放
 // sharedInitCopy: 完全继承Window.prototype 及 自定义 OwnPropertyDescriptor
 // OwnPropertyDescriptor定义 为 原OwnPropertyDescriptor定义 (DragEvent, MouseEvent, RegExp, EventTarget, JSON等)
 //  + 覆盖定义 (document, location, setTimeout, setInterval, addEventListener 等)
-// sharedInitCopy: ScriptCat脚本共通使用
+// sharedInitCopy: SuperCat脚本共通使用
 
-const USE_PSEUDO_WINDOW = true; // 日后或能设置使 ScriptCat的沙盒 window 能以 name / id 存取页面元素
+const USE_PSEUDO_WINDOW = true; // 日后或能设置使 SuperCat的沙盒 window 能以 name / id 存取页面元素
 
 class PseudoWindow {}
 const PseudoWindowPrototype = PseudoWindow.prototype;
@@ -266,11 +266,11 @@ const isPrimitive = (x: any) => x !== Object(x);
 // 拦截上下文
 export const createProxyContext = <const Context extends GMWorldContext>(context: any): Context => {
   // let withContext: Context | undefined | { [key: string]: any } = undefined;
-  // 为避免做成混乱。 ScriptCat脚本中 self, globalThis, parent 为固定值不能修改
+  // 为避免做成混乱。 SuperCat脚本中 self, globalThis, parent 为固定值不能修改
 
   const ownDescs = Object.getOwnPropertyDescriptors(sharedInitCopy);
 
-  // mySandbox: ScriptCat各脚本独自使用
+  // mySandbox: SuperCat各脚本独自使用
   let mySandbox: typeof sharedInitCopy | undefined = undefined;
 
   const createFuncWrapper = (f: () => any) => {
@@ -348,7 +348,7 @@ export const createProxyContext = <const Context extends GMWorldContext>(context
       delete desc.value;
     } else if (desc?.get) {
       // 真实的 window 物件中部份属性(self, parent) 存在setter. 意义不明
-      // 为避免做成混乱，ScriptCat脚本的沙盒不提供setter（即不能修改）
+      // 为避免做成混乱，SuperCat脚本的沙盒不提供setter（即不能修改）
       // (像window.document, 能写 window.document = null 不会报错但赋值不变)
       desc.get = createFuncWrapper(desc.get);
       desc.set = undefined;
@@ -403,7 +403,7 @@ export const createProxyContext = <const Context extends GMWorldContext>(context
 
   // @grant window.onurlchange
   if (cWindow?.onurlchange === null) {
-    // 目前 TM 只支援 null. ScriptCat不需要grant预设启用？
+    // 目前 TM 只支援 null. SuperCat不需要grant预设启用？
     mySandbox.onurlchange = null;
   }
 

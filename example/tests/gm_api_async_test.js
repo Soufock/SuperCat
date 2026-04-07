@@ -2,8 +2,8 @@
 // @name         GM.* API 完整测试 (异步版本)
 // @namespace    https://docs.scriptcat.org/
 // @version      1.0.0
-// @description  全面测试ScriptCat的所有GM.* (异步Promise版本) API功能
-// @author       ScriptCat
+// @description  全面测试SuperCat的所有GM.* (异步Promise版本) API功能
+// @author       SuperCat
 // @match        https://content-security-policy.com/
 // @grant        GM.getValue
 // @grant        GM.setValue
@@ -32,7 +32,7 @@
 (async function () {
   "use strict";
 
-  console.log("%c=== ScriptCat GM.* API 测试开始 ===", "color: blue; font-size: 16px; font-weight: bold;");
+  console.log("%c=== SuperCat GM.* API 测试开始 ===", "color: blue; font-size: 16px; font-weight: bold;");
 
   let testResults = {
     passed: 0,
@@ -77,9 +77,9 @@
   console.log("\n%c--- GM 存储 API 测试 ---", "color: orange; font-weight: bold;");
 
   await testAsync("GM.setValue - 字符串", async () => {
-    await GM.setValue("test_string", "Hello ScriptCat Async");
+    await GM.setValue("test_string", "Hello SuperCat Async");
     const value = await GM.getValue("test_string");
-    assert("Hello ScriptCat Async", value, "GM.getValue 应该返回正确的字符串值");
+    assert("Hello SuperCat Async", value, "GM.getValue 应该返回正确的字符串值");
   });
 
   await testAsync("GM.setValue - 数字", async () => {
@@ -95,7 +95,7 @@
   });
 
   await testAsync("GM.setValue - 对象", async () => {
-    const obj = { name: "ScriptCat", version: "1.3.0", features: ["GM API", "Async"] };
+    const obj = { name: "SuperCat", version: "1.3.0", features: ["GM API", "Async"] };
     await GM.setValue("test_object", obj);
     const value = await GM.getValue("test_object");
     assert("object", typeof value, "应该返回对象");
@@ -154,7 +154,7 @@
     assert("function", typeof GM.addElement, "GM.addElement 应该是函数");
 
     const div = await GM.addElement("div", {
-      textContent: "ScriptCat GM.addElement 测试",
+      textContent: "SuperCat GM.addElement 测试",
       style: "position: fixed; top: 10px; right: 10px; background: lightblue; padding: 10px; z-index: 9999;",
     });
     assert(true, div && div.tagName === "DIV", "应该返回 div 元素");
@@ -237,8 +237,8 @@
     assert("function", typeof GM.notification, "GM.notification 应该是函数");
 
     const notificationPromise = GM.notification({
-      text: "ScriptCat GM.* API 测试通知",
-      title: "ScriptCat 异步测试",
+      text: "SuperCat GM.* API 测试通知",
+      title: "SuperCat 异步测试",
       image: "https://scriptcat.org/logo.png",
       onclick: () => {
         console.log("通知被点击");
@@ -260,7 +260,7 @@
   await testAsync("GM.setClipboard", async () => {
     assert("function", typeof GM.setClipboard, "GM.setClipboard 应该是函数");
 
-    await GM.setClipboard("ScriptCat GM.* API 测试文本 - " + new Date().toLocaleString());
+    await GM.setClipboard("SuperCat GM.* API 测试文本 - " + new Date().toLocaleString());
     console.log("文本已复制到剪贴板（可以尝试粘贴验证）");
   });
 
@@ -277,7 +277,7 @@
   console.log("\n%c--- GM 菜单 API 测试 ---", "color: orange; font-weight: bold;");
 
   await testAsync("GM.registerMenuCommand", async () => {
-    const menuId = await GM.registerMenuCommand("ScriptCat 异步测试菜单", () => {
+    const menuId = await GM.registerMenuCommand("SuperCat 异步测试菜单", () => {
       alert("异步测试菜单被点击！");
     });
     assert(true, menuId !== undefined, "应该返回菜单ID");
@@ -433,7 +433,7 @@
 
   // 标题
   await GM.addElement(resultContainer, "h3", {
-    textContent: "🐱 ScriptCat GM.* API 测试结果 (异步版本)",
+    textContent: "🐱 SuperCat GM.* API 测试结果 (异步版本)",
     style:
       "margin: 0 0 15px 0; color: #333; font-size: 18px; font-weight: bold; border-bottom: 2px solid " +
       borderColor +
@@ -554,5 +554,5 @@
     alert("请查看控制台中的详细测试日志");
   };
 
-  console.log("%c=== ScriptCat GM.* API 测试完成 ===", "color: blue; font-size: 16px; font-weight: bold;");
+  console.log("%c=== SuperCat GM.* API 测试完成 ===", "color: blue; font-size: 16px; font-weight: bold;");
 })();

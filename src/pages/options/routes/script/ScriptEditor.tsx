@@ -466,7 +466,7 @@ function ScriptEditor() {
     }
     // 恢复标题
     return () => {
-      document.title = "Home - ScriptCat";
+      document.title = "Home - SuperCat";
     };
   }, []);
 

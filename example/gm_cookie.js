@@ -63,7 +63,7 @@ GM_cookie("set", {
 /**
  * GM.cookie（Promise / async 风格）
  * ----------------
- * ScriptCat / 新版 TM 推荐写法
+ * SuperCat / 新版 TM 推荐写法
  */
 console.log(
   "async GM.cookie.list",

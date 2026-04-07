@@ -26,9 +26,9 @@ for example:
 ### Help Us Translate
 
 [Crowdin](https://crowdin.com/project/scriptcat)
-is an online localization platform that helps us manage translations. If you're interested in helping us translate ScriptCat, you can find the project on Crowdin and start contributing.
+is an online localization platform that helps us manage translations. If you're interested in helping us translate SuperCat, you can find the project on Crowdin and start contributing.
 
-- `src/locales` is the translation file directory for the [extension](https://github.com/scriptscat/scriptcat)
+- `src/locales` is the translation file directory for the [extension](https://github.com/Soufock/supercat)
 
 # i18n 方案
 
@@ -54,6 +54,6 @@ i18n 使用[i8next](https://www.i18next.com/)实现，之所以不是用`chrome.
 ### 帮助我们翻译
 
 [Crowdin](https://crowdin.com/project/scriptcat)
-是一个在线的多语言翻译平台。如果您有兴趣帮助我们翻译 ScriptCat 的相关内容，您可以在 Crowdin 上找到 ScriptCat 项目，并开始进行翻译工作。
+是一个在线的多语言翻译平台。如果您有兴趣帮助我们翻译 SuperCat 的相关内容，您可以在 Crowdin 上找到 SuperCat 项目，并开始进行翻译工作。
 
-- `src/locales`为[扩展](https://github.com/scriptscat/scriptcat)翻译文件目录
+- `src/locales`为[扩展](https://github.com/Soufock/supercat)翻译文件目录

@@ -43,7 +43,7 @@ const formatUrl = async (url: string) => {
   try {
     const newUrl = new URL(url.replace(/\/$/, ""));
     const { hostname, pathname } = newUrl;
-    // 判断是否为脚本猫脚本页
+    // 判断是否为超级猫脚本页
     if (hostname === "scriptcat.org" && /script-show-page\/\d+$/.test(pathname)) {
       const scriptId = pathname.match(/\d+$/)![0];
       // 请求脚本信息
@@ -345,9 +345,9 @@ const MainLayout: React.FC<{
             />
           </Modal>
           <div className="tw-flex tw-flex-row tw-items-center">
-            <img style={{ height: "40px" }} src="/assets/logo.png" alt="ScriptCat" />
+            <img style={{ height: "40px" }} src="/assets/logo.png" alt="SuperCat" />
             <Typography.Title heading={4} className="!tw-m-0">
-              {"ScriptCat"}
+              {"SuperCat"}
             </Typography.Title>
           </div>
           <Space size="small" className="action-tools">

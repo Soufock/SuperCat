@@ -152,7 +152,7 @@ function Tools() {
                   setLoading((prev) => ({ ...prev, cloud: true }));
                   try {
                     let fs = await FileSystemFactory.create(backup.filesystem, backup.params[backup.filesystem]);
-                    fs = await fs.openDir("ScriptCat");
+                    fs = await fs.openDir("SuperCat");
                     let list = await fs.list();
                     list.sort((a, b) => b.updatetime - a.updatetime);
                     // Filter non-zip files
@@ -182,7 +182,7 @@ function Tools() {
                     onClick={async () => {
                       let fs = await FileSystemFactory.create(backup.filesystem, backup.params[backup.filesystem]);
                       try {
-                        fs = await fs.openDir("ScriptCat");
+                        fs = await fs.openDir("SuperCat");
                         const url = await fs.getDirUrl();
                         if (url) {
                           window.open(url, "_black");
@@ -220,7 +220,7 @@ function Tools() {
                           let file: FileReader;
                           let data: Blob;
                           try {
-                            fs = await fs.openDir("ScriptCat");
+                            fs = await fs.openDir("SuperCat");
                             file = await fs.open(item);
                             data = (await file.read("blob")) as Blob;
                           } catch (e) {
@@ -252,7 +252,7 @@ function Tools() {
                                 backup.params[backup.filesystem]
                               );
                               try {
-                                fs = await fs.openDir("ScriptCat");
+                                fs = await fs.openDir("SuperCat");
                                 await fs.delete(item.name);
                                 setBackupFileList(backupFileList.filter((i) => i.name !== item.name));
                                 Message.success(t("delete_success")!);

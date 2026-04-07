@@ -901,7 +901,7 @@ export class RuntimeService {
 
   // 如果是重复注册，需要先调用 unregisterUserscripts
   async registerUserscripts() {
-    // 若 UserScripts API 不可使用 或 ScriptCat设定为不启用脚本 则退出
+    // 若 UserScripts API 不可使用 或 SuperCat设定为不启用脚本 则退出
     if (!this.isUserScriptsAvailable || !this.isLoadScripts) return;
 
     // 判断是否已经注册过

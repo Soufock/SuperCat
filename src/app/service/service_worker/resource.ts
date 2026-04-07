@@ -229,7 +229,7 @@ export class ResourceService {
           }
         }
         if (!flag) {
-          resource.content = `console.warn("ScriptCat: couldn't load resource from URL ${url} due to a SRI error ");`;
+          resource.content = `console.warn("SuperCat: couldn't load resource from URL ${url} due to a SRI error ");`;
         }
       }
       return resource;

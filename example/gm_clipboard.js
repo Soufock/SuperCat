@@ -17,4 +17,4 @@
  * - 可写入文本 / HTML
  * - 常用于“一键复制”
  */
-GM_setClipboard("我爱ScriptCat");
+GM_setClipboard("我爱SuperCat");

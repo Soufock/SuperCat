@@ -1311,13 +1311,13 @@ export default class GMApi extends GM_Base {
     _GM_notification(this, detail, ondone, image, onclick);
   }
 
-  // ScriptCat 额外API
+  // SuperCat 额外API
   @GMContext.API({ alias: "GM.closeNotification" })
   public GM_closeNotification(id: string): void {
     this.sendMessage("GM_closeNotification", [`${id}`]);
   }
 
-  // ScriptCat 额外API
+  // SuperCat 额外API
   @GMContext.API({ alias: "GM.updateNotification" })
   public GM_updateNotification(id: string, details: GMTypes.NotificationDetails): void {
     this.sendMessage("GM_updateNotification", [`${id}`, customClone(details)]);
@@ -1395,7 +1395,7 @@ export default class GMApi extends GM_Base {
     });
   }
 
-  // ScriptCat 额外API
+  // SuperCat 额外API
   @GMContext.API({ alias: "GM.closeInTab" })
   public GM_closeInTab(tabid: string) {
     if (this.isInvalidContext()) return;

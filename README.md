@@ -4,33 +4,36 @@
 
 <h1 align="center">
 <img src="./src/assets/logo.png"/><br/>
-ScriptCat
+SuperCat
 </h1>
 
-<p align="center">ScriptCat, a browser extension that can execute user scripts, everything can be scripted, allowing your browser to do more things!</p>
+<p align="center">SuperCat, a browser extension that can execute user scripts, everything can be scripted, allowing your browser to do more things!</p>
 
 <p align="center">
 <a href="https://docs.scriptcat.org/">Documentation</a> ·
 <a href="https://discord.gg/JF76nHCCM7">Discord</a> ·
-<a href="https://scriptcat.org/en/search">ScriptCat Scripts</a>
+<a href="https://scriptcat.org/en/search">SuperCat Scripts</a>
 </p>
 
-![GitHub stars](https://img.shields.io/github/stars/scriptscat/scriptcat.svg)
-[![Build Status](https://github.com/scriptscat/scriptcat/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/scriptscat/scriptcat)
-[![codecov](https://codecov.io/gh/scriptscat/scriptcat/branch/main/graph/badge.svg?token=G1A6ZGDQTY)](https://codecov.io/gh/scriptscat/scriptcat)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/scriptscat/scriptcat.svg?label=version)
+![GitHub stars](https://img.shields.io/github/stars/Soufock/supercat.svg)
+[![Build Status](https://github.com/Soufock/supercat/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/Soufock/supercat)
+[![codecov](https://codecov.io/gh/Soufock/supercat/branch/main/graph/badge.svg?token=G1A6ZGDQTY)](https://codecov.io/gh/Soufock/supercat)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/Soufock/supercat.svg?label=version)
 [![Chrome](https://img.shields.io/badge/chrome-success-brightgreen?logo=google%20chrome)](https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf)
 [![Edge](https://img.shields.io/badge/edge-success-brightgreen?logo=microsoft%20edge)](https://microsoftedge.microsoft.com/addons/detail/scriptcat/liilgpjgabokdklappibcjfablkpcekh)
 [![FireFox](https://img.shields.io/badge/firefox-success-brightgreen?logo=firefox)](https://addons.mozilla.org/en/firefox/addon/scriptcat/)
 [![Crowdin](https://badges.crowdin.net/scriptcat/localized.svg)](https://crowdin.com/project/scriptcat)
 
-## About ScriptCat
+## About SuperCat
 
-ScriptCat is a powerful userscript manager based on Tampermonkey's design philosophy, fully compatible with Tampermonkey
+SuperCat is a powerful userscript manager based on Tampermonkey's design philosophy, fully compatible with Tampermonkey
 scripts. It not only supports traditional userscripts but also innovatively implements a background script execution
 framework with rich API extensions, enabling scripts to accomplish more powerful functions. It features an excellent
 built-in code editor with intelligent completion and syntax checking, making script development more efficient and
 smooth.
+
+This project is adapted from SuperCat. Special thanks to the SuperCat project for its open-source work and community
+contributions, which provided an important foundation and reference for SuperCat.
 
 **If you find it useful, please give us a Star ⭐ This is the greatest support for us!**
 
@@ -78,17 +81,17 @@ smooth.
 #### Manual Installation
 
 If you cannot access extension stores, download the latest ZIP package from
-[GitHub Releases](https://github.com/scriptscat/scriptcat/releases) for manual installation.
+[GitHub Releases](https://github.com/Soufock/supercat/releases) for manual installation.
 
 ### 📝 Usage Guide
 
 #### Installing Scripts
 
-1. **Get from Script Markets**: Visit [ScriptCat Script Store](https://scriptcat.org/en/search) or other userscript
+1. **Get from Script Markets**: Visit [SuperCat Script Store](https://scriptcat.org/en/search) or other userscript
    markets
 2. **Background Scripts Zone**: Experience unique [Background Scripts](https://scriptcat.org/en/search?script_type=3)
 3. **Compatibility**: Supports most Tampermonkey scripts, can be installed directly. If you encounter incompatible
-   scripts, please report them to us through [issues](https://github.com/scriptscat/scriptcat/issues).
+   scripts, please report them to us through [issues](https://github.com/Soufock/supercat/issues).
 
 #### Developing Scripts
 
@@ -115,9 +118,10 @@ Join our community to communicate with other users and developers:
 
 ### 🙏 Acknowledgments
 
-Thanks to the following developers who have contributed to ScriptCat. ScriptCat becomes better with your help!
+SuperCat is adapted from the open-source SuperCat project. Thanks to the SuperCat project and its contributors for
+their continued open-source work.
 
-[![Contributors](https://contrib.rocks/image?repo=scriptscat/scriptcat&max=1000)](https://github.com/scriptscat/scriptcat/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Soufock/supercat&max=1000)](https://github.com/Soufock/supercat/graphs/contributors)
 
 ---
 

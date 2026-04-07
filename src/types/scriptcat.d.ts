@@ -25,7 +25,7 @@ declare type UserConfig = { [key: string]: { [key: string]: Config } };
 declare const GM_info: {
   version: string;
   scriptWillUpdate: boolean;
-  scriptHandler: "ScriptCat";
+  scriptHandler: "SuperCat";
   scriptUpdateURL?: string;
   // scriptSource: string;
   scriptMetaStr?: string;
@@ -259,9 +259,9 @@ declare const GM: {
           accessKey?: string; // 菜单快捷键
           autoClose?: boolean; // 默认为 true
           title?: string; // 菜单提示
-          // ScriptCat 扩展
+          // SuperCat 扩展
           icon?: string; // 菜单图标
-          // ScriptCat 扩展
+          // SuperCat 扩展
           closeOnClick?: boolean; // 点击菜单后是否关闭, 与autoClose含义相同
         }
       | string
@@ -383,7 +383,7 @@ declare function CAT_fileStorage(
 declare function CAT_fileStorage(action: "config"): void;
 
 /**
- * 脚本猫后台脚本重试, 当你的脚本出现错误时, 可以reject返回此错误, 以便脚本猫重试
+ * 超级猫后台脚本重试, 当你的脚本出现错误时, 可以reject返回此错误, 以便超级猫重试
  * 重试时间请注意不要与脚本执行时间冲突, 否则可能会导致重复执行, 最小重试时间为5s
  * @class CATRetryError
  */
@@ -536,7 +536,7 @@ declare namespace GMTypes {
     /**
      * 是否在隐私窗口（无痕模式）中打开标签页。
      *
-     * 注意：ScriptCat 的 manifest.json 配置了 `"incognito": "split"`，
+     * 注意：SuperCat 的 manifest.json 配置了 `"incognito": "split"`，
      * 在 normal window 中执行时，tabId/windowId 将不可用，
      * 只能执行「打开新标签页」动作。
      *

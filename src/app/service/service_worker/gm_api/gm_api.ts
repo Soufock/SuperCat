@@ -516,7 +516,7 @@ export default class GMApi {
       return { action: "error", data: { code: 2, error: "file storage is error" } };
     }
     let fs: FileSystem;
-    const baseDir = `ScriptCat/app/${details.baseDir ? details.baseDir : request.script.uuid}`;
+    const baseDir = `SuperCat/app/${details.baseDir ? details.baseDir : request.script.uuid}`;
     try {
       fs = await FileSystemFactory.create(fsConfig.filesystem, fsConfig.params[fsConfig.filesystem]);
       await FileSystemFactory.mkdirAll(fs, baseDir);
@@ -812,7 +812,7 @@ export default class GMApi {
           - cookie a cookie to be patched into the sent cookie set
           - cookiePartition object?, containing the partition key to be used for sent and received partitioned cookies
                 topLevelSite string?, representing the top frame site for partitioned cookies
-        The ScriptCat implementation for cookie, cookiePartition, cookiePartition.topLevelSite are limited.
+        The SuperCat implementation for cookie, cookiePartition, cookiePartition.topLevelSite are limited.
       */
 
       // 处理cookiePartition
@@ -1142,7 +1142,7 @@ export default class GMApi {
       throw new Error("param is failed");
     }
     const options: chrome.notifications.NotificationCreateOptions = {
-      title: details.title || "ScriptCat",
+      title: details.title || "SuperCat",
       message: details.text || i18n.t("no_message_content"),
       iconUrl: details.image || getIcon(request.script) || chrome.runtime.getURL("assets/logo.png"),
       type: isFirefox() || details.progress === undefined ? "basic" : "progress",

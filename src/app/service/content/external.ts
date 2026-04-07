@@ -15,7 +15,7 @@ const isExternalWhitelisted = (hostname: string) => {
 
 // 生成暴露给页面的 Scriptcat 外部接口
 const createScriptcatExpose = (msg: Message) => {
-  const scriptExpose: App.ExternalScriptCat = {
+  const scriptExpose: App.ExternalSuperCat = {
     isInstalled(name: string, namespace: string, callback: (res: App.IsInstalledResponse | undefined) => unknown) {
       sendMessage<App.IsInstalledResponse>(msg, "scripting/script/isInstalled", { name, namespace }).then(callback);
     },
@@ -35,7 +35,7 @@ const safeSetExternal = <T extends object>(external: any, key: string, value: T)
 };
 
 // 当 TM 与 SC 同时存在时的兼容处理：TM 未安装脚本时回退查询 SC
-const patchTampermonkeyIsInstalled = (external: any, scriptExpose: App.ExternalScriptCat) => {
+const patchTampermonkeyIsInstalled = (external: any, scriptExpose: App.ExternalSuperCat) => {
   const exposedTM = external.Tampermonkey;
   const isInstalledTM = exposedTM?.isInstalled;
   const isInstalledSC = scriptExpose.isInstalled;

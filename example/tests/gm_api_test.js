@@ -2,8 +2,8 @@
 // @name         GM API 完整测试
 // @namespace    https://docs.scriptcat.org/
 // @version      1.1.0
-// @description  全面测试ScriptCat的所有GM API功能
-// @author       ScriptCat
+// @description  全面测试SuperCat的所有GM API功能
+// @author       SuperCat
 // @match        https://content-security-policy.com/
 // @grant        GM_getValue
 // @grant        GM_setValue
@@ -36,7 +36,7 @@
 (async function () {
   "use strict";
 
-  console.log("%c=== ScriptCat GM API 测试开始 ===", "color: blue; font-size: 16px; font-weight: bold;");
+  console.log("%c=== SuperCat GM API 测试开始 ===", "color: blue; font-size: 16px; font-weight: bold;");
 
   let testResults = {
     passed: 0,
@@ -95,9 +95,9 @@
   console.log("\n%c--- GM 存储 API 测试 ---", "color: orange; font-weight: bold;");
 
   test("GM_setValue - 字符串", () => {
-    GM_setValue("test_string", "Hello ScriptCat");
+    GM_setValue("test_string", "Hello SuperCat");
     const value = GM_getValue("test_string");
-    assert("Hello ScriptCat", value, "GM_getValue 应该返回正确的字符串值");
+    assert("Hello SuperCat", value, "GM_getValue 应该返回正确的字符串值");
   });
 
   test("GM_setValue - 数字", () => {
@@ -113,7 +113,7 @@
   });
 
   test("GM_setValue - 对象", () => {
-    const obj = { name: "ScriptCat", version: "1.2.0", features: ["GM API", "Background"] };
+    const obj = { name: "SuperCat", version: "1.2.0", features: ["GM API", "Background"] };
     GM_setValue("test_object", obj);
     const value = GM_getValue("test_object");
     assert(JSON.stringify(obj), JSON.stringify(value), "对象应该相等");
@@ -238,7 +238,7 @@
     assert("function", typeof GM_addElement, "GM_addElement 应该是函数");
 
     const div = GM_addElement("div", {
-      textContent: "ScriptCat GM_addElement 测试",
+      textContent: "SuperCat GM_addElement 测试",
       style: "position: fixed; top: 10px; right: 10px; background: yellow; padding: 10px; z-index: 9999;",
     });
     assert(true, div && div.tagName === "DIV", "应该返回 div 元素");
@@ -339,8 +339,8 @@
       assert("function", typeof GM_notification, "GM_notification 应该是函数");
 
       GM_notification({
-        text: "ScriptCat GM API 测试通知",
-        title: "ScriptCat 测试",
+        text: "SuperCat GM API 测试通知",
+        title: "SuperCat 测试",
         image: "https://scriptcat.org/logo.png",
         onclick: () => {
           console.log("通知被点击");
@@ -355,7 +355,7 @@
     test("GM_setClipboard", () => {
       assert("function", typeof GM_setClipboard, "GM_setClipboard 应该是函数");
 
-      GM_setClipboard("ScriptCat GM API 测试文本 - " + new Date().toLocaleString());
+      GM_setClipboard("SuperCat GM API 测试文本 - " + new Date().toLocaleString());
       console.log("文本已复制到剪贴板（可以尝试粘贴验证）");
     });
 
@@ -372,7 +372,7 @@
     console.log("\n%c--- GM 菜单 API 测试 ---", "color: orange; font-weight: bold;");
 
     test("GM_registerMenuCommand", () => {
-      const menuId = GM_registerMenuCommand("ScriptCat 测试菜单", () => {
+      const menuId = GM_registerMenuCommand("SuperCat 测试菜单", () => {
         alert("测试菜单被点击！");
       });
       assert(true, menuId !== undefined, "应该返回菜单ID");
@@ -633,7 +633,7 @@
 
     // 标题
     GM_addElement(resultContainer, "h3", {
-      textContent: "🐱 ScriptCat GM API 测试结果",
+      textContent: "🐱 SuperCat GM API 测试结果",
       style:
         "margin: 0 0 15px 0; color: #333; font-size: 18px; font-weight: bold; border-bottom: 2px solid " +
         borderColor +
@@ -754,6 +754,6 @@
       alert("请查看控制台中的详细测试日志");
     };
 
-    console.log("%c=== ScriptCat GM API 测试完成 ===", "color: blue; font-size: 16px; font-weight: bold;");
+    console.log("%c=== SuperCat GM API 测试完成 ===", "color: blue; font-size: 16px; font-weight: bold;");
   })();
 })();

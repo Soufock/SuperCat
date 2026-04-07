@@ -9,7 +9,7 @@
 // ==/UserScript==
 
 /**
- * @typedef {import('../src/types/scriptcat')} ScriptCat
+ * @typedef {import('../src/types/scriptcat')} SuperCat
  */
 
 let i;

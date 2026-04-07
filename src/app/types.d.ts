@@ -27,7 +27,7 @@ declare namespace App {
       }
   )?;
 
-  export type ExternalScriptCat = {
+  export type ExternalSuperCat = {
     isInstalled(name: string, namespace: string, callback: (res: IsInstalledResponse | undefined) => unknown): void;
   };
 

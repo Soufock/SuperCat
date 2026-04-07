@@ -125,7 +125,7 @@ const Sider: React.FC = () => {
                   </a>
                 </Menu.Item>
                 <Menu.Item key="GitHub">
-                  <a href="https://github.com/scriptscat/scriptcat" target="_blank" rel="noreferrer">
+                  <a href="https://github.com/Soufock/supercat" target="_blank" rel="noreferrer">
                     <IconGithub /> {"GitHub"}
                   </a>
                 </Menu.Item>

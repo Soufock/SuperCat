@@ -163,10 +163,10 @@ export class PopupService {
             if (backgroundMenu?.length) this.genScriptMenuByTabMap(menuEntries, backgroundMenu); // 后台脚本的菜单
             if (menuEntries.length > 0) {
               // 创建根菜单
-              // 若有子项才建立根节点「ScriptCat」，避免出现空的顶层菜单。
+              // 若有子项才建立根节点「SuperCat」，避免出现空的顶层菜单。
               menuEntries.unshift({
                 id: "scriptMenu",
-                title: "ScriptCat",
+                title: "SuperCat",
                 contexts: ["all"],
               });
             }

@@ -349,7 +349,7 @@ function App() {
       case "report_issue": {
         const browserInfo = `${navigator.userAgent}`;
         const issueUrl =
-          `https://github.com/scriptscat/scriptcat/issues/new?` +
+          `https://github.com/Soufock/supercat/issues/new?` +
           `template=bug_report${isChineseUser() ? "" : "_en"}.yaml&scriptcat-version=${ExtVersion}&` +
           `browser-version=${encodeURIComponent(browserInfo)}`;
         window.open(issueUrl, "_blank");
@@ -405,7 +405,7 @@ function App() {
         title={
           <div className="tw-flex tw-justify-between">
             <div className="tw-text-xl tw-inline-flex tw-flex-row tw-items-center tw-gap-x-1">
-              <span>{"ScriptCat"}</span>
+              <span>{"SuperCat"}</span>
             </div>
             <div className="tw-flex tw-flex-row tw-items-center">
               <Switch size="small" className="tw-mr-1" checked={isEnableScript} onChange={handleEnableScriptChange} />
@@ -469,7 +469,7 @@ function App() {
                       {t("community")}
                     </Menu.Item>
                     <Menu.Item
-                      key="https://github.com/scriptscat/scriptcat"
+                      key="https://github.com/Soufock/supercat"
                       className="tw-flex tw-flex-row tw-items-center"
                     >
                       <IconGithub style={iconStyle} />
@@ -540,7 +540,7 @@ function App() {
             <Tooltip content={`${t("popup.new_version_available")} (v${checkUpdate.version})`}>
               <span
                 onClick={() => {
-                  window.open(`https://github.com/scriptscat/scriptcat/releases/tag/v${checkUpdate.version}`);
+                  window.open(`https://github.com/Soufock/supercat/releases/tag/v${checkUpdate.version}`);
                 }}
                 className={`tw-text-[12px] tw-font-500 tw-cursor-pointer tw-underline tw-underline-offset-2 tw-text-blue-500 dark:tw-text-blue-400`}
               >{`v${ExtVersion}`}</span>

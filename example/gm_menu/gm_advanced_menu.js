@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ScriptCat PR #831 菜单演示（二级菜单 & 分隔线）
+// @name         SuperCat PR #831 菜单演示（二级菜单 & 分隔线）
 // @namespace    demo.pr831.scriptcat
 // @version      1.0.0
 // @description  演示 GM_registerMenuCommand 新增的 nested（二级菜单）与 separator（分隔线）选项；兼容 TM/SC。

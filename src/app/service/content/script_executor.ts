@@ -23,7 +23,7 @@ export const initEnvInfo = {
   /** sandboxMode - 预留字段，当前固定为 raw */
   sandboxMode: "raw",
   /** isIncognito - inject/content 环境下无法判断，固定为 false */
-  /** 使用者可透过 「 await navigator.storage.persisted() 」来判断，但ScriptCat不会主动执行此代码来判断 */
+  /** 使用者可透过 「 await navigator.storage.persisted() 」来判断，但SuperCat不会主动执行此代码来判断 */
   isIncognito: false,
 } satisfies GMInfoEnv;
 

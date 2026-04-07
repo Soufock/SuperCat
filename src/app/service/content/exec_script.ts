@@ -51,7 +51,7 @@ export default class ExecScript {
     const grantSet = new Set(scriptRes.metadata.grant || []);
     if (grantSet.has("none")) {
       // 不注入任何GM api
-      // ScriptCat行为：GM.info 和 GM_info 同时注入
+      // SuperCat行为：GM.info 和 GM_info 同时注入
       // 在不改变 Context 的情况下，以 named 传入多个全域变量
       this.named = { GM: { info: GM_info }, GM_info };
     } else {

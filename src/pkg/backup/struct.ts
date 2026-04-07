@@ -53,7 +53,7 @@ export type ScriptOptions = {
 export type ScriptMeta = {
   name: string;
   uuid: string; // 此uuid是对tm的兼容处理
-  sc_uuid: string; // 脚本猫uuid
+  sc_uuid: string; // 超级猫uuid
   modified: number;
   file_url: string;
   subscribe_url?: string;

@@ -188,10 +188,10 @@ testSync("GM_addStyle", () => {
   });
 
   await test("GM_setValue - 对象", () => {
-    const obj = { name: "ScriptCat", type: "content" };
+    const obj = { name: "SuperCat", type: "content" };
     GM_setValue("test_object", obj);
     const value = GM_getValue("test_object", {});
-    assert("ScriptCat", value.name, "对象的name属性应该正确");
+    assert("SuperCat", value.name, "对象的name属性应该正确");
     assert("content", value.type, "对象的type属性应该正确");
   });
 

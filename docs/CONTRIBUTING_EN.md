@@ -1,16 +1,16 @@
 [中文贡献指南](../CONTRIBUTING.md)
 
-# ScriptCat Contributing Guide
+# SuperCat Contributing Guide
 
-We greatly appreciate your contributions to ScriptCat! This guide aims to help you contribute to ScriptCat in a more standardized way, so please read it carefully.
+We greatly appreciate your contributions to SuperCat! This guide aims to help you contribute to SuperCat in a more standardized way, so please read it carefully.
 
 ## Submitting Issues
 
-Before submitting an issue, we recommend that you first check the [existing Issues](https://github.com/scriptscat/scriptcat/issues) to avoid duplicate submissions.
+Before submitting an issue, we recommend that you first check the [existing Issues](https://github.com/Soufock/supercat/issues) to avoid duplicate submissions.
 
 ### Reporting Problems, Bugs & Vulnerabilities
 
-ScriptCat is an evolving project. If you encounter problems during use and are confident that these issues are caused by ScriptCat, we welcome you to submit an Issue. When submitting, please include detailed reproduction steps and runtime environment information.
+SuperCat is an evolving project. If you encounter problems during use and are confident that these issues are caused by SuperCat, we welcome you to submit an Issue. When submitting, please include detailed reproduction steps and runtime environment information.
 
 ### Proposing New Features
 
@@ -18,7 +18,7 @@ We welcome you to propose new feature suggestions in Issues. To help us better u
 
 ## Pull Request
 
-ScriptCat uses [pnpm](https://pnpm.io/) to manage project dependencies. If you already have npm installed, the following commands can help you quickly set up the development environment:
+SuperCat uses [pnpm](https://pnpm.io/) to manage project dependencies. If you already have npm installed, the following commands can help you quickly set up the development environment:
 
 ```bash
 # Install node.js dependencies
@@ -44,13 +44,13 @@ This example indicates that a new feature has been added: login functionality.
 
 ### Workflow Overview
 
-The `main` branch is ScriptCat's primary branch. To maintain code integrity, please do not directly modify the `main` branch. You should create a new branch and make modifications on this branch, then initiate a Pull Request targeting the `main` branch. Please try to use Chinese for Pull Request titles to facilitate automatic changelog generation.
+The `main` branch is SuperCat's primary branch. To maintain code integrity, please do not directly modify the `main` branch. You should create a new branch and make modifications on this branch, then initiate a Pull Request targeting the `main` branch. Please try to use Chinese for Pull Request titles to facilitate automatic changelog generation.
 
-If you are not a member of the ScriptCat team, you can first fork this repository and then initiate a Pull Request to the `main` branch of this repository. When creating commits, please follow the commit message guidelines mentioned above. We will merge your contributions to the main branch after code review is completed.
+If you are not a member of the SuperCat team, you can first fork this repository and then initiate a Pull Request to the `main` branch of this repository. When creating commits, please follow the commit message guidelines mentioned above. We will merge your contributions to the main branch after code review is completed.
 
 ## Writing Documentation
 
-ScriptCat's documentation is in a separate repository: [scriptcat.org](https://docs.scriptcat.org), written using [docusaurus](https://docusaurus.io/). There are some [Markdown](https://docusaurus.io/zh-CN/docs/markdown-features) features that can help you. If you need to preview the modified documentation locally, you can use the following commands to install documentation dependencies and start the dev server:
+SuperCat's documentation is in a separate repository: [scriptcat.org](https://docs.scriptcat.org), written using [docusaurus](https://docusaurus.io/). There are some [Markdown](https://docusaurus.io/zh-CN/docs/markdown-features) features that can help you. If you need to preview the modified documentation locally, you can use the following commands to install documentation dependencies and start the dev server:
 
 ```bash
 pnpm install
@@ -59,9 +59,9 @@ pnpm start
 
 ### Help Us Translate
 
-[Crowdin](https://crowdin.com/project/scriptcat) is an online multilingual translation platform. If you are interested in helping us translate ScriptCat-related content, you can find the ScriptCat project on Crowdin and start translation work.
+[Crowdin](https://crowdin.com/project/scriptcat) is an online multilingual translation platform. If you are interested in helping us translate SuperCat-related content, you can find the SuperCat project on Crowdin and start translation work.
 
-- `src/locales` is the translation file directory for the [extension](https://github.com/scriptscat/scriptcat)
+- `src/locales` is the translation file directory for the [extension](https://github.com/Soufock/supercat)
 
 #### Enable WYSIWYG Mode for Extension
 
@@ -73,21 +73,21 @@ Visit the script site at: [https://scriptcat.org/ach-UG](https://scriptcat.org/a
 
 ## Participating in Development
 
-ScriptCat uses ESLint to standardize code style and Vitest for unit testing. You can use the following commands to run them:
+SuperCat uses ESLint to standardize code style and Vitest for unit testing. You can use the following commands to run them:
 
 ```bash
 pnpm test
 pnpm run lint
 ```
 
-ScriptCat's page development uses the following technologies:
+SuperCat's page development uses the following technologies:
 
 - [React](https://reactjs.org/)
 - UI framework [arco](https://arco.design)
 - CSS framework [unocss](https://unocss.dev/interactive/)
 - RsPack bundling tool [rspack](https://rspack.dev/)
 
-If you want to run ScriptCat locally, you can use the following commands:
+If you want to run SuperCat locally, you can use the following commands:
 
 ```bash
 pnpm run dev

@@ -435,7 +435,7 @@ function App() {
       setBtnText(isUpdate ? t("update_script")! : t("install_script"));
     }
     if (upsertScript) {
-      document.title = `${!isUpdate ? t("install_script") : t("update_script")} - ${i18nName(upsertScript!)} - ScriptCat`;
+      document.title = `${!isUpdate ? t("install_script") : t("update_script")} - ${i18nName(upsertScript!)} - SuperCat`;
     }
   }, [isUpdate, scriptInfo, upsertScript, t]);
 

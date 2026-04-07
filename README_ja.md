@@ -4,29 +4,29 @@
 
 <h1 align="center">
 <img src="./src/assets/logo.png"/><br/>
-ScriptCat
+SuperCat
 </h1>
 
-<p align="center">ScriptCat は、ユーザースクリプトを実行できるブラウザ拡張機能です。すべてをスクリプト化し、ブラウザにもっと多くのことをさせましょう！</p>
+<p align="center">SuperCat は、ユーザースクリプトを実行できるブラウザ拡張機能です。すべてをスクリプト化し、ブラウザにもっと多くのことをさせましょう！</p>
 
 <p align="center">
 <a href="https://docs.scriptcat.org/">ドキュメント</a> ·
 <a href="https://discord.gg/JF76nHCCM7">Discord</a> ·
-<a href="https://scriptcat.org/ja/search">ScriptCat スクリプト</a>
+<a href="https://scriptcat.org/ja/search">SuperCat スクリプト</a>
 </p>
 
-![GitHub stars](https://img.shields.io/github/stars/scriptscat/scriptcat.svg)
-[![Build Status](https://github.com/scriptscat/scriptcat/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/scriptscat/scriptcat)
-[![codecov](https://codecov.io/gh/scriptscat/scriptcat/branch/main/graph/badge.svg?token=G1A6ZGDQTY)](https://codecov.io/gh/scriptscat/scriptcat)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/scriptscat/scriptcat.svg?label=version)
+![GitHub stars](https://img.shields.io/github/stars/Soufock/supercat.svg)
+[![Build Status](https://github.com/Soufock/supercat/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/Soufock/supercat)
+[![codecov](https://codecov.io/gh/Soufock/supercat/branch/main/graph/badge.svg?token=G1A6ZGDQTY)](https://codecov.io/gh/Soufock/supercat)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/Soufock/supercat.svg?label=version)
 [![Chrome](https://img.shields.io/badge/chrome-success-brightgreen?logo=google%20chrome)](https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf)
 [![Edge](https://img.shields.io/badge/edge-success-brightgreen?logo=microsoft%20edge)](https://microsoftedge.microsoft.com/addons/detail/scriptcat/liilgpjgabokdklappibcjfablkpcekh)
 [![FireFox](https://img.shields.io/badge/firefox-success-brightgreen?logo=firefox)](https://addons.mozilla.org/ja/firefox/addon/scriptcat/)
 [![Crowdin](https://badges.crowdin.net/scriptcat/localized.svg)](https://crowdin.com/project/scriptcat)
 
-## ScriptCat について
+## SuperCat について
 
-ScriptCat は、Tampermonkey の設計思想に基づく強力なユーザースクリプトマネージャーで、Tampermonkey のスクリプトと完全な互換性を持ちます。  
+SuperCat は、Tampermonkey の設計思想に基づく強力なユーザースクリプトマネージャーで、Tampermonkey のスクリプトと完全な互換性を持ちます。  
 従来のユーザースクリプトをサポートするだけでなく、豊富な API 拡張を備えたバックグラウンドスクリプト実行フレームワークを革新的に実装し、スクリプトでより強力な機能を実現できます。  
 また、優れた内蔵コードエディタを搭載し、インテリジェント補完や構文チェックに対応しており、スクリプト開発をより効率的かつスムーズに行えます。
 
@@ -74,16 +74,16 @@ ScriptCat は、Tampermonkey の設計思想に基づく強力なユーザース
 #### 手動インストール
 
 拡張ストアにアクセスできない場合は、  
-[GitHub Releases](https://github.com/scriptscat/scriptcat/releases) から最新の ZIP パッケージをダウンロードして手動インストールできます。
+[GitHub Releases](https://github.com/Soufock/supercat/releases) から最新の ZIP パッケージをダウンロードして手動インストールできます。
 
 ### 📝 使用ガイド
 
 #### スクリプトのインストール
 
-1. **スクリプトセンターから取得**： [ScriptCat スクリプトセンター](https://scriptcat.org/ja/search) またはその他のユーザースクリプトセンターへアクセス
+1. **スクリプトセンターから取得**： [SuperCat スクリプトセンター](https://scriptcat.org/ja/search) またはその他のユーザースクリプトセンターへアクセス
 2. **バックグラウンドスクリプトセンター**：ユニークな [バックグラウンドスクリプト](https://scriptcat.org/ja/search?script_type=3) を体験
 3. **互換性**：多くの Tampermonkey スクリプトをサポートしており、そのままインストール可能。不具合があれば  
-   [issues](https://github.com/scriptscat/scriptcat/issues) にてご報告ください。
+   [issues](https://github.com/Soufock/supercat/issues) にてご報告ください。
 
 #### スクリプト開発
 
@@ -109,10 +109,10 @@ ScriptCat は、Tampermonkey の設計思想に基づく強力なユーザース
 
 ### 🙏 謝辞
 
-ScriptCat に貢献してくださった開発者の皆様に感謝します。  
-あなたの協力によって ScriptCat はより良いものになっています！
+SuperCat に貢献してくださった開発者の皆様に感謝します。  
+あなたの協力によって SuperCat はより良いものになっています！
 
-[![Contributors](https://contrib.rocks/image?repo=scriptscat/scriptcat&max=1000)](https://github.com/scriptscat/scriptcat/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Soufock/supercat&max=1000)](https://github.com/Soufock/supercat/graphs/contributors)
 
 ---
 
